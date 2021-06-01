@@ -44,10 +44,12 @@ describe(UniqueIdService.name, () =>{
         WHEN
         called with empty prefix`, () => {
             
-            const emptyValues = [null, undefined, '']
+            const emptyValues = [null, undefined, '', '0', '1']
 
             emptyValues.forEach( emptyValue => {
-                expect(() => service.generateUniqueIdWithPrefix(emptyValue)).toThrow()
+                expect(() => service.generateUniqueIdWithPrefix(emptyValue))
+                .withContext(`Empty value: ${emptyValue}`)
+                .toThrow()
             })
         })
 
